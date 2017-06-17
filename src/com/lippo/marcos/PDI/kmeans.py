@@ -28,4 +28,4 @@ def kmeans_cv2(path_img, nome_img):
 
 if __name__ == '__main__':
     kmeans_cv2(path_img='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png',
-               nome_img='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/kmeans.png')
+               nome_img='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/kmeans.png')

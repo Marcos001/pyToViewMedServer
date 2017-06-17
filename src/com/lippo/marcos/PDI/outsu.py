@@ -99,5 +99,5 @@ if __name__ == '__main__':
     ''
 
     binarizando_com_outsu(path_img='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png',
-                          path_saida='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/otsu.png')
+                          path_saida='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.png')
     print('done outsu')

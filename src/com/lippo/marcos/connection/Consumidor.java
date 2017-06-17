@@ -62,10 +62,34 @@ public class Consumidor extends util{
 
                             //print("imagem recebida -> segmentado com Outsu > ");
                             print("run script");
-                            executadoScript();
+
+                            executadoScript_kmeans();
+
+                            executadoScript_otsu();
+
+                            //compactar
+
+                            String[] imagens = new String[4];
+                            imagens[0] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/kmeans.png";
+                            imagens[1] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.png";
+
+                            imagens[2] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/kmeans.zip";
+                            imagens[3] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.zip";
+
+                            //zipar
+                            zip.compactar("Kmeans.png",imagens[2], arquivo.converte_bytes(arquivo.ler_arquivo(imagens[0])));
+                            zip.compactar("otsu.png",imagens[3], arquivo.converte_bytes(arquivo.ler_arquivo(imagens[1])));
+
+
+                            //converter em binario e enviar
+
+                            byte[] b_kmeans = arquivo.converte_bytes(arquivo.ler_arquivo(imagens[2]));
+                            byte[] b_otsu = arquivo.converte_bytes(arquivo.ler_arquivo(imagens[3]));
 
                             //enviar duas imagens como zip - otsu / kmeans
-                            new Produtor("Apto a enviar imagens");
+                            new Produtor().send_file(b_kmeans);
+                            new Produtor().send_file(b_otsu);
+                            print("Arquivos enviados com sucesso");
 
 
                         }
