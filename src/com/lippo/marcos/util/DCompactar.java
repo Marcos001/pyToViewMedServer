@@ -2,6 +2,7 @@ package com.lippo.marcos.util;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
@@ -14,6 +15,8 @@ public class DCompactar extends util{
     public DCompactar(){
 
     }
+
+
 
     public void compactar(String path_arquivo, String nome_arquivo_zip, byte[] conteudo_file){
 
@@ -34,6 +37,53 @@ public class DCompactar extends util{
 
         }catch (Exception erro){
             print("erro ao compactar o arquivo");
+        }
+
+    }
+
+
+    public void compactar_mais(String[] arquivos,   String arquivoCompactado ){
+
+
+        byte[] buffer = new byte[1024];
+
+        try {
+
+                // cria o arquivo zip
+            ZipOutputStream saidaDeStream = new ZipOutputStream(new FileOutputStream(arquivoCompactado));
+
+                // marca o modo de compreensão do arquivo
+            saidaDeStream.setLevel(Deflater.BEST_COMPRESSION);
+
+                // laço para pegar todos os arquivos que serao zipados
+            for (int i = 0; i < arquivos.length; i++)
+            {
+                // carrega o arquivo em um stream
+                FileInputStream entradaDeStream = new FileInputStream(arquivos[i]);
+
+                // cria uma entrada no zip para o arquivo
+                saidaDeStream.putNextEntry(new ZipEntry(arquivos[i]));
+
+                // transfere os dados do arquivo para o zip
+                int tamanhoArquivo;
+                while ((tamanhoArquivo = entradaDeStream.read(buffer)) < 0)
+                {
+                    saidaDeStream.write(buffer, 0, tamanhoArquivo);
+                }
+
+                // fecha a entrada do arquivo no zip
+                saidaDeStream.closeEntry();
+
+                    // fecha o arquivo
+                entradaDeStream.close();
+            }
+
+                // fecha o arquivo zip
+            saidaDeStream.close();
+            print("Arquivos compactados com sucesso!");
+
+        } catch (Exception e) {
+            print("Erro ao compactar os arquivos");
         }
 
     }

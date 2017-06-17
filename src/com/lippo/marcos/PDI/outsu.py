@@ -33,7 +33,7 @@ def binarizando_com_limiar(path_img):
     plt.title('Otsu thresholding'), plt.xticks([]), plt.yticks([])
     plt.show()
 
-def binarizando_com_outsu(path_img):
+def binarizando_com_outsu(path_img, path_saida):
     '''
     Aqui vem na binarização de Otsu.
     Este algoritmo irá permitir-nos obter de forma
@@ -54,7 +54,7 @@ def binarizando_com_outsu(path_img):
     plt.title('Otsu thresholding'), plt.xticks([]), plt.yticks([])
     plt.show()
     print('salvando imagem')
-    cv2.imwrite('/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/segmentada_outsu.png', imgf)
+    cv2.imwrite(path_saida, imgf)
     print('Segmentada com Otsu')
 
 
@@ -97,8 +97,7 @@ def get_valores_limiar(path_img):
 
 if __name__ == '__main__':
     ''
-    #vendo_histograma_imagem('/home/mrv/PycharmProjects/Segmentation/data/imagens/natureza/fiolha.jpg')
-    #binarizando_com_limiar('/home/mrv/PycharmProjects/Segmentation/data/imagens/natureza/fiolha.jpg')
-    binarizando_com_outsu('/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/consumer.png')
+
+    binarizando_com_outsu(path_img='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png',
+                          path_saida='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/otsu.png')
     print('done outsu')
-    #get_valores_limiar('/home/mrv/PycharmProjects/Segmentation/data/imagens/natureza/fiolha.jpg')

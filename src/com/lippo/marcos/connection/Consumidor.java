@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class Consumidor extends util{
 
-    private final static String QUEUE_NAME = "enviar";
+    private final static String QUEUE_NAME = "phone_server";
     private String name_image = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/consumer.png";
     private String file_zip_receiver = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/data.zip";
     private int cont_connections = 0;
@@ -64,6 +64,7 @@ public class Consumidor extends util{
                             print("run script");
                             executadoScript();
 
+                            //enviar duas imagens como zip - otsu / kmeans
                             new Produtor("Apto a enviar imagens");
 
 
@@ -87,7 +88,7 @@ public class Consumidor extends util{
 
     }
 
-    public Consumidor(String ttt){
+    public void _Consumidor(String ttt){
 
         new Thread(new Runnable() {
             @Override
