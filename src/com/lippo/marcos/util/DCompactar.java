@@ -1,0 +1,89 @@
+package com.lippo.marcos.util;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
+
+/**
+ * Created by nig on 01/06/17.
+ */
+public class DCompactar extends util{
+
+    public DCompactar(){
+
+    }
+
+    public void compactar(String path_arquivo, String nome_arquivo_zip, byte[] conteudo_file){
+
+        try{
+
+            FileOutputStream file_output = new FileOutputStream(nome_arquivo_zip);
+
+            ZipOutputStream inst_zip = new ZipOutputStream(file_output);
+
+            inst_zip.putNextEntry(new ZipEntry(path_arquivo));
+
+            inst_zip.write(conteudo_file);
+
+            inst_zip.closeEntry();
+            inst_zip.close();
+
+            print("zip criado com sucesso");
+
+        }catch (Exception erro){
+            print("erro ao compactar o arquivo");
+        }
+
+    }
+
+    public void descompactar(String path_file_zip){
+
+        byte[] buffer = new byte[1024];
+
+        try{
+
+            //cria o input
+            ZipInputStream zinstream = new ZipInputStream(new FileInputStream(path_file_zip));
+
+            //pega a proxima entrada do arquivo
+            ZipEntry zentry = zinstream.getNextEntry();
+
+            while (zentry != null) {
+            // Pega o nome da entrada
+                String entryName = zentry.getName();
+
+            // Cria o output do arquivo , Sera extraido onde esta rodando a classe
+                String saida = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/";
+
+                print("salvando em : "+ entryName);
+
+                FileOutputStream outstream = new FileOutputStream(saida+entryName);
+
+                int n;
+
+                 // Escreve no arquivo
+                 while ((n = zinstream.read(buffer)) > -1) {
+               	 outstream.write(buffer, 0, n);
+                 }
+
+                // Fecha arquivo
+               	outstream.close();
+
+               // Fecha entrada e tenta pegar a proxima
+               zinstream.closeEntry();
+               zentry = zinstream.getNextEntry();
+
+            }
+
+
+            }catch (Exception erro){
+            print("Erro ao extrair os arquivos");
+            }
+
+
+
+    }
+
+}
