@@ -10,6 +10,7 @@ import com.lippo.marcos.util.*;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Consumidor extends util{
 
@@ -69,26 +70,45 @@ public class Consumidor extends util{
 
                             //compactar
 
-                            String[] imagens = new String[4];
+                            String[] imagens = new String[2];
+
                             imagens[0] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/kmeans.png";
                             imagens[1] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.png";
 
-                            imagens[2] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/kmeans.zip";
-                            imagens[3] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.zip";
+                            String[] name_imagens = new String[2];
 
+                            name_imagens[0] = "kmeans.png";
+                            name_imagens[1] = "otsu.png";
+
+                            //converter um bytes e joagar em yum arraylist
+
+                            ArrayList<byte[]> mylist = new ArrayList<>();
+
+
+                            byte[] b_kmeans = arquivo.converte_bytes(arquivo.ler_arquivo(imagens[0]));
+                            byte[] b_otsu = arquivo.converte_bytes(arquivo.ler_arquivo(imagens[1]));
+
+                            mylist.add(b_kmeans);
+                            mylist.add(b_otsu);
+
+
+
+
+
+                            String path_send_zip = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/data_zip/send_zip.zip";
                             //zipar
-                            zip.compactar("Kmeans.png",imagens[2], arquivo.converte_bytes(arquivo.ler_arquivo(imagens[0])));
-                            zip.compactar("otsu.png",imagens[3], arquivo.converte_bytes(arquivo.ler_arquivo(imagens[1])));
+                            zip.compactar_files(name_imagens, path_send_zip, mylist);
+
+                            //zip.compactar("Kmeans.png",imagens[2], arquivo.converte_bytes(arquivo.ler_arquivo(imagens[0])));
+                            //zip.compactar("otsu.png",imagens[3], arquivo.converte_bytes(arquivo.ler_arquivo(imagens[1])));
 
 
                             //converter em binario e enviar
 
-                            byte[] b_kmeans = arquivo.converte_bytes(arquivo.ler_arquivo(imagens[2]));
-                            byte[] b_otsu = arquivo.converte_bytes(arquivo.ler_arquivo(imagens[3]));
+                            byte[] body_send = arquivo.converte_bytes(arquivo.ler_arquivo(path_send_zip));
 
                             //enviar duas imagens como zip - otsu / kmeans
-                            new Produtor().send_file(b_kmeans);
-                            new Produtor().send_file(b_otsu);
+                            new Produtor().send_file(body_send);
                             print("Arquivos enviados com sucesso");
 
 

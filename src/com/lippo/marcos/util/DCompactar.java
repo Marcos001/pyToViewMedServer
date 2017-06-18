@@ -2,6 +2,7 @@ package com.lippo.marcos.util;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -10,9 +11,37 @@ import java.util.zip.ZipOutputStream;
 /**
  * Created by nig on 01/06/17.
  */
+
 public class DCompactar extends util{
 
     public DCompactar(){
+
+    }
+
+
+
+    public void compactar_files(String[] path_arquivo, String nome_arquivo_zip,  ArrayList<byte[]> mylist ){
+
+        try{
+
+            FileOutputStream file_output = new FileOutputStream(nome_arquivo_zip);
+
+            ZipOutputStream inst_zip = new ZipOutputStream(file_output);
+
+            for(int i=0;i<2;i++){
+                inst_zip.putNextEntry(new ZipEntry(path_arquivo[i]));
+                inst_zip.write(mylist.get(i));
+            }
+
+
+            inst_zip.closeEntry();
+            inst_zip.close();
+
+            print("zip criado com sucesso");
+
+        }catch (Exception erro){
+            print("erro ao compactar o arquivo");
+        }
 
     }
 
