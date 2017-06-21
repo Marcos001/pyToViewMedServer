@@ -95,9 +95,21 @@ def get_valores_limiar(path_img):
     ret, otsu = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     print( thresh, ' <> ', ret)
 
+
+
 if __name__ == '__main__':
     ''
 
-    binarizando_com_outsu(path_img='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png',
-                          path_saida='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.png')
+    path_img = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png'
+    path_saida = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.png'
+    path_new_img = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/otsu_sobreposta.png'
+
+
+    binarizando_com_outsu(path_img=path_img,
+                          path_saida=path_saida)
+
+    from com.lippo.marcos.PDI.mv_pdi import sobrepor_img_rgb
+
+    sobrepor_img_rgb(path_img=path_img, path_mask=path_saida, path_new_img=path_new_img)
+
     print('done outsu')
