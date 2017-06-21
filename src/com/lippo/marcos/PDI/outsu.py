@@ -95,6 +95,22 @@ def get_valores_limiar(path_img):
     ret, otsu = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     print( thresh, ' <> ', ret)
 
+def sobrepor_img_rgb(path_img, path_mask, path_new_img):
+    ''
+    img = cv2.imread(path_img)
+    img_new = cv2.imread(path_mask)
+    img_mask = cv2.imread(path_mask, 0)
+
+    for i in range(img_mask.shape[0]):
+        for j in range(img_mask.shape[1]):
+            if img_mask[i][j] < 125:
+                img_new[i][j][0] = img[i][j][0]
+                img_new[i][j][1] = img[i][j][1]
+                img_new[i][j][2] = img[i][j][2]
+
+    print('salvando a imagem')
+    cv2.imwrite(path_new_img, img_new)
+    print('imagem ['+path_new_img+'] sobreposta e salva com sucesso!')
 
 
 if __name__ == '__main__':
@@ -108,8 +124,8 @@ if __name__ == '__main__':
     binarizando_com_outsu(path_img=path_img,
                           path_saida=path_saida)
 
-    from com.lippo.marcos.PDI.mv_pdi import sobrepor_img_rgb
-
+    print('sobreponto > ')
     sobrepor_img_rgb(path_img=path_img, path_mask=path_saida, path_new_img=path_new_img)
+    print('sobreposta jah')
 
     print('done outsu')

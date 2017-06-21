@@ -70,15 +70,19 @@ public class Consumidor extends util{
 
                             //compactar
 
-                            String[] imagens = new String[2];
+                            String[] imagens = new String[4];
 
                             imagens[0] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/kmeans.png";
                             imagens[1] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.png";
+                            imagens[2] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/kmeans_sobreposta.png";
+                            imagens[3] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/otsu_sobreposta.png";
 
-                            String[] name_imagens = new String[2];
+                            String[] name_imagens = new String[4];
 
                             name_imagens[0] = "kmeans.png";
                             name_imagens[1] = "otsu.png";
+                            name_imagens[2] = "sb_kmeans.png";
+                            name_imagens[3] = "sb_otsu.png";
 
                             //converter um bytes e joagar em yum arraylist
 
@@ -87,16 +91,20 @@ public class Consumidor extends util{
 
                             byte[] b_kmeans = arquivo.converte_bytes(arquivo.ler_arquivo(imagens[0]));
                             byte[] b_otsu = arquivo.converte_bytes(arquivo.ler_arquivo(imagens[1]));
+                            byte[] sb_kmeans = arquivo.converte_bytes(arquivo.ler_arquivo(imagens[2]));
+                            byte[] sb_otsu = arquivo.converte_bytes(arquivo.ler_arquivo(imagens[3]));
 
                             mylist.add(b_kmeans);
                             mylist.add(b_otsu);
-
+                            mylist.add(sb_kmeans);
+                            mylist.add(sb_otsu);
 
 
 
 
                             String path_send_zip = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/data_zip/send_zip.zip";
                             //zipar
+
                             zip.compactar_files(name_imagens, path_send_zip, mylist);
 
                             //zip.compactar("Kmeans.png",imagens[2], arquivo.converte_bytes(arquivo.ler_arquivo(imagens[0])));

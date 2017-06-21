@@ -22,10 +22,38 @@ def kmeans_cv2(path_img, nome_img):
 
     c.imwrite(nome_img, res2)
 
+def sobrepor_img_rgb(path_img, path_mask, path_new_img):
+    ''
+    img = c.imread(path_img)
+    img_new = c.imread(path_mask)
+    img_mask = c.imread(path_mask, 0)
 
+    for i in range(img_mask.shape[0]):
+        for j in range(img_mask.shape[1]):
+            if img_mask[i][j] < 125:
+                img_new[i][j][0] = img[i][j][0]
+                img_new[i][j][1] = img[i][j][1]
+                img_new[i][j][2] = img[i][j][2]
+
+    print('salvando a imagem')
+    c.imwrite(path_new_img, img_new)
+    print('imagem ['+path_new_img+'] sobreposta e salva com sucesso!')
 
 
 
 if __name__ == '__main__':
-    kmeans_cv2(path_img='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png',
-               nome_img='/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/kmeans.png')
+
+    path_img = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png'
+    path_saida = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/kmeans.png'
+    path_new_img = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/kmeans_sobreposta.png'
+
+
+    kmeans_cv2(path_img=path_img,
+               nome_img=path_saida)
+
+    print('sobreponto > ')
+    sobrepor_img_rgb(path_img=path_img, path_mask=path_saida, path_new_img=path_new_img)
+    print('sobreposta jah')
+
+    print('done outsu')
+

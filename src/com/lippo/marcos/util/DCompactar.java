@@ -28,7 +28,7 @@ public class DCompactar extends util{
 
             ZipOutputStream inst_zip = new ZipOutputStream(file_output);
 
-            for(int i=0;i<2;i++){
+            for(int i=0;i<path_arquivo.length;i++){
                 inst_zip.putNextEntry(new ZipEntry(path_arquivo[i]));
                 inst_zip.write(mylist.get(i));
             }
