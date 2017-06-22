@@ -1,6 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 import cv2
+import time
 
 def vendo_histograma_imagem(path_img ):
     '''análise usando OpenCV para obter o histograma da imagem e veja se a imagem é bimodal'''
@@ -120,12 +121,18 @@ if __name__ == '__main__':
     path_saida = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.png'
     path_new_img = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/otsu_sobreposta.png'
 
+    ini = time.time()
+    binarizando_com_outsu(path_img=path_img, path_saida=path_saida)
 
-    binarizando_com_outsu(path_img=path_img,
-                          path_saida=path_saida)
+
 
     print('sobreponto > ')
     sobrepor_img_rgb(path_img=path_img, path_mask=path_saida, path_new_img=path_new_img)
     print('sobreposta jah')
+    fim = time.time()
+
+    file_ = open('/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/arquivo/otsu.txt', 'w')
+    file_.write(str((fim-ini)))
+    file_.close()
 
     print('done outsu')

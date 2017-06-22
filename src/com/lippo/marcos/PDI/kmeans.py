@@ -47,13 +47,20 @@ if __name__ == '__main__':
     path_saida = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/kmeans.png'
     path_new_img = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/kmeans_sobreposta.png'
 
+    import time
 
+    ini = time.time()
     kmeans_cv2(path_img=path_img,
                nome_img=path_saida)
 
     print('sobreponto > ')
     sobrepor_img_rgb(path_img=path_img, path_mask=path_saida, path_new_img=path_new_img)
     print('sobreposta jah')
+    fim = time.time()
+
+    file_ = open('/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/arquivo/kmeans.txt', 'w')
+    file_.write(str((fim-ini)))
+    file_.close()
 
     print('done outsu')
 
