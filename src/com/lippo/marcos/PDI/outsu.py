@@ -104,7 +104,7 @@ def sobrepor_img_rgb(path_img, path_mask, path_new_img):
 
     for i in range(img_mask.shape[0]):
         for j in range(img_mask.shape[1]):
-            if img_mask[i][j] < 125:
+            if img_mask[i][j] > 0:
                 img_new[i][j][0] = img[i][j][0]
                 img_new[i][j][1] = img[i][j][1]
                 img_new[i][j][2] = img[i][j][2]
