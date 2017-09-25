@@ -1,7 +1,6 @@
 import os, timeit, time
 import matplotlib.pyplot as plt
 
-
 def gerar_grafico(otsu, kmeans):
     ''''''
     y_axis = [otsu, kmeans]

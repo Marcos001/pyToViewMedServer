@@ -3,6 +3,7 @@ from matplotlib import pyplot as plt
 import cv2
 import time
 
+
 def vendo_histograma_imagem(path_img ):
     '''análise usando OpenCV para obter o histograma da imagem e veja se a imagem é bimodal'''
 

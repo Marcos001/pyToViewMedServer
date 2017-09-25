@@ -1,13 +1,8 @@
 package com.lippo.marcos.connection;
 
-/**
- * Created by mrv on 24/04/17.
- */
 
 import com.rabbitmq.client.*;
 import com.lippo.marcos.util.*;
-
-
 
 import java.io.IOException;
 import java.util.ArrayList;

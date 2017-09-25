@@ -5,9 +5,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
-/**
- * Created by mrv on 24/04/17.
- */
+
 public class Produtor extends util {
 
 
@@ -133,9 +131,6 @@ public class Produtor extends util {
 
 
     }
-
-
-
 
 
 }

@@ -4,9 +4,7 @@ import com.lippo.marcos.util.util;
 
 import java.io.*;
 
-/**
- * Created by nig on 19/05/17.
- */
+
 public class Arquivo extends util{
 
 

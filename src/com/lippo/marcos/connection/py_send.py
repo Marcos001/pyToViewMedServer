@@ -1,6 +1,6 @@
 import pika
 import logging
-
+#enviar msg with rabbitmq
 f = open(file='image.jpg', mode='rb')
 i = f.read()
 

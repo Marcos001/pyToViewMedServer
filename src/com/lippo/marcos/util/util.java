@@ -3,9 +3,7 @@ package com.lippo.marcos.util;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-/**
- * Created by mrv on 18/05/17.
- */
+
 public class util {
 
     public util(){}

@@ -8,7 +8,6 @@ def ver_imagem():
     cv2.destroyAllWindows()
 
 
-
 if __name__ == '__main__':
     ""
     ver_imagem()

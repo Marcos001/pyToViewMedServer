@@ -1,6 +1,7 @@
 import cv2 as c
 import numpy as np
 
+
 def kmeans_cv2(path_img, nome_img):
 
     img = c.imread(path_img)

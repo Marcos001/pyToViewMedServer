@@ -17,7 +17,6 @@ public class Main {
 	// write your code here
 
         new Consumidor();
-        //new Produtor("HEHEHEHE");
 
     }
 }
