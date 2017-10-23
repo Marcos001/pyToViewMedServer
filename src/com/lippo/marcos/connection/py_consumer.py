@@ -1,14 +1,17 @@
 import pika, io, os
 from PIL import Image
 
+import numpy as np
 
+from com.lippo.marcos.PDI.outsu import main
 
 
 
 def callback(ch, method, properties, body):
     print(" [x] Recebido dados ")
     image = Image.open(io.BytesIO(body))
-    image.show()
+    pix = np.array(image)
+    main(pix)
 
 
 def init_server():
