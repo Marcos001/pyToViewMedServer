@@ -31,16 +31,17 @@ def sobrepor_img_rgb(img_RGB, img_mask):
 
     return img_RGB
 
-def main(imagem):
+def main_otsu(imagem):
 
     ver_imagem(imagem)
 
     gray_imagem = cv2.cvtColor(imagem, cv2.COLOR_BGR2GRAY)
+
     imagem_segmentada = segmentando_com_otsu(gray_imagem)
+
     imagem_sobreposta = sobrepor_img_rgb(imagem, imagem_segmentada)
-    cv2.imshow("segmentada", imagem_sobreposta)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+
+    ver_imagem(imagem_sobreposta)
 
 
 
