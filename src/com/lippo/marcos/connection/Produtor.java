@@ -23,7 +23,7 @@ public class Produtor extends util {
 
         try{
 
-            print(" configuration connection");
+            print(" configurações da conexão ");
             ConnectionFactory factory = new ConnectionFactory();
             factory.setHost(HOST);
             factory.setPort(PORT);
@@ -33,12 +33,12 @@ public class Produtor extends util {
             connection = factory.newConnection();
             Channel channel = connection.createChannel();
 
-            print(" sending message > ");
+            print(" enviando mensagem > ");
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
             channel.basicPublish("", QUEUE_NAME, null, conteudo);
             System.out.println(" [x] arquivo enviado ");
 
-            print("closing connection > ");
+            print("fechando conexão");
             channel.close();
             connection.close();
 

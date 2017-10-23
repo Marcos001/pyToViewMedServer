@@ -1,5 +1,6 @@
 package com.lippo.marcos.util;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.file.Path;
@@ -63,6 +64,37 @@ public class util {
 
         try
         {
+            Runtime rt2 = Runtime.getRuntime();
+            Process pr2 = rt2.exec(script);
+            pr2.waitFor();
+            BufferedReader br = new BufferedReader(new InputStreamReader(pr2.getInputStream()));
+            String line = "";
+            while ((line = br.readLine()) != null)
+            {
+                System.out.println(line);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.toString());
+            e.printStackTrace();
+        }
+
+        print("Script otsu.py Executado com Sucesso!");
+
+    }
+
+    public void executadoScript_otsu_param(Image img){
+
+
+        print("executando Script");
+
+
+        String script = "python3.5 PDI/outsu.py";
+
+        try
+        {
+            print("Java chamando interpretador python");
             Runtime rt2 = Runtime.getRuntime();
             Process pr2 = rt2.exec(script);
             pr2.waitFor();

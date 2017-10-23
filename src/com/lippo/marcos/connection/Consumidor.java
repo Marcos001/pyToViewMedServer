@@ -4,8 +4,15 @@ package com.lippo.marcos.connection;
 import com.rabbitmq.client.*;
 import com.lippo.marcos.util.*;
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import java.awt.*;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Consumidor extends util{
 
@@ -15,7 +22,7 @@ public class Consumidor extends util{
     private String file_zip_receiver = PATH+"data/data.zip";
     private int cont_connections = 0;
 
-    private void receber_zip(){
+    private void receber_dados(){
 
         Arquivo arquivo = new Arquivo();
         DCompactar zip = new DCompactar();
@@ -46,8 +53,6 @@ public class Consumidor extends util{
                                                    byte[] body) throws IOException {
 
                             print("obtido fuxo de bytes");
-
-                            //String message = new String(body, "UTF-8"); - teto somente
 
                             print("Escrevendo o arquivo");
                             arquivo.criar_arquivo(file_zip_receiver, body);
@@ -106,8 +111,6 @@ public class Consumidor extends util{
 
                             zip.compactar_files(name_imagens, path_send_zip, mylist);
 
-                            //zip.compactar("Kmeans.png",imagens[2], arquivo.converte_bytes(arquivo.ler_arquivo(imagens[0])));
-                            //zip.compactar("otsu.png",imagens[3], arquivo.converte_bytes(arquivo.ler_arquivo(imagens[1])));
 
 
                             //converter em binario e enviar
@@ -133,22 +136,21 @@ public class Consumidor extends util{
     }
 
 
-    public Consumidor(){
+    private void receber_bytes(){
 
-        receber_zip();
 
-    }
-
-    public void _Consumidor(String ttt){
+        cont_connections++;
+        print("CONEXÃO ["+cont_connections+"]");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-
                 try{
                     ConnectionFactory factory = new ConnectionFactory();
                     factory.setHost("localhost");
+                    factory.setUsername("nig");
+                    factory.setPassword("nig");
                     Connection connection = factory.newConnection();
                     Channel channel = connection.createChannel();
 
@@ -157,25 +159,55 @@ public class Consumidor extends util{
 
                     Consumer consumer = new DefaultConsumer(channel) {
                         @Override
-                        public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
-                                throws IOException {
-                            String message = new String(body, "UTF-8");
+                        public void handleDelivery(String consumerTag,
+                                                   Envelope envelope,
+                                                   AMQP.BasicProperties properties,
+                                                   byte[] body) throws IOException {
 
+                            print("Imagem recebida");
 
-                            System.out.println(" [x] Received '" + message + "'");
+                            ByteArrayInputStream bis = new ByteArrayInputStream(body);
+                            Iterator<?> readers = ImageIO.getImageReadersByFormatName("jpg");
 
+                            //ImageIO is a class containing static methods for locating ImageReaders
+                            //and ImageWriters, and performing simple encoding and decoding.
+
+                            print("Obtendo objeto de imagem");
+                            ImageReader reader = (ImageReader) readers.next();
+                            Object source = bis;
+                            ImageInputStream iis = ImageIO.createImageInputStream(source);
+                            reader.setInput(iis, true);
+                            ImageReadParam param = reader.getDefaultReadParam();
+
+                            print("Obtendo instancia d imagem");
+                            Image image = reader.read(0, param);
+
+                            print("chamando OTSU");
+                            executadoScript_otsu_param(image);
+
+                            print("DONE.");
 
                         }
                     };
                     channel.basicConsume(QUEUE_NAME, true, consumer);
                 }catch (Exception erro){
-                    System.out.println("NAO FOI");
+                    System.out.println("Erro na conexão!");
                 }
 
             }
         }).start();
 
+
     }
+
+
+    public Consumidor(){
+
+        receber_bytes();
+
+    }
+
+
 
 
 

@@ -54,4 +54,28 @@ public class Arquivo extends util{
     }
 
 
+
+    public void criar_arquivo_zip(String path_name_file, byte[] conteudo_binario){
+
+        try{
+
+            FileOutputStream criar = new FileOutputStream(path_name_file);
+            FileDescriptor _descricao_arquivo = criar.getFD();
+
+            criar.write(conteudo_binario);
+
+            criar.flush();
+            _descricao_arquivo.sync();
+            criar.close();
+
+            print("Imagem escrita com sucesso");
+
+
+        }catch (Exception erro){
+            print("erro ao criar o arquivo : "+erro);
+        }
+
+    }
+
+
 }

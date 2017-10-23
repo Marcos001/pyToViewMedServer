@@ -118,6 +118,9 @@ def sobrepor_img_rgb(path_img, path_mask, path_new_img):
 if __name__ == '__main__':
     ''
 
+    print("executanfdo Otsu em Script python")
+
+"""
     path_img = os.getcwd()+'/src/com/lippo/marcos/data/extract/pim_imagem.png'
     path_saida = os.getcwd()+'/src/com/lippo/marcos/data/extract/segmentadas/otsu.png'
     path_new_img = os.getcwd()+'/src/com/lippo/marcos/data/extract/sobrepostas/otsu_sobreposta.png'
@@ -135,3 +138,4 @@ if __name__ == '__main__':
     file_.close()
 
     print('done outsu')
+"""
