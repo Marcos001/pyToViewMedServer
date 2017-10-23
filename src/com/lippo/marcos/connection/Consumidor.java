@@ -27,7 +27,6 @@ public class Consumidor extends util{
             @Override
             public void run() {
 
-
                 try{
                     ConnectionFactory factory = new ConnectionFactory();
                     factory.setHost("localhost");
