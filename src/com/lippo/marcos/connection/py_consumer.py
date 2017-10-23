@@ -1,45 +1,26 @@
-import pika
+import pika, io, os
+from PIL import Image
 
-#configurando o rabbit
 
-connection = pika.BlockingConnection(pika.ConnectionParameters( host='localhost'))
 
-channel = connection.channel()
 
-channel.queue_declare(queue="enviar")
-
-print('[*] Waiting for messages. To exit press CTRL+C')
 
 def callback(ch, method, properties, body):
-    f = open('/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/outputimage.jpg','wb')
-    f.write(body)
-    f.close()
-channel.basic_consume(callback, queue="enviar", no_ack=True)
+    print(" [x] Recebido dados ")
+    image = Image.open(io.BytesIO(body))
+    image.show()
 
 
-# main
-channel.start_consuming()
+def init_server():
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+    channel  = connection.channel()
 
-''' restore
-import pika
+    channel.queue_declare(queue='hello')
 
-f=open(“outputimage.jpg”,”wb”)
+    channel.basic_consume(callback, queue='phone_server', no_ack=True)
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(
-host=’localhost’))
-channel = connection.channel()
+    print(' [*] Waiting for messages. To exit press CTRL+C')
+    channel.start_consuming()
 
-channel.queue_declare(queue=’hello’)
-
-print ‘ [*] Waiting for messages. To exit press CTRL+C’
-
-def callback(ch, method, properties, body):
-f.write(body)
-f.close()
-channel.basic_consume(callback,
-queue=’hello’,
-no_ack=True)
-
-channel.start_consuming()
-'''
-
+if __name__ == '__main__':
+    init_server()
