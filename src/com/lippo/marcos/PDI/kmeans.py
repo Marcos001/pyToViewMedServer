@@ -1,5 +1,6 @@
 import cv2 as c
 import numpy as np
+import os
 
 
 def kmeans_cv2(path_img, nome_img):
@@ -44,9 +45,9 @@ def sobrepor_img_rgb(path_img, path_mask, path_new_img):
 
 if __name__ == '__main__':
 
-    path_img = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png'
-    path_saida = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/kmeans.png'
-    path_new_img = '/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/kmeans_sobreposta.png'
+    path_img = os.getcwd()+'/src/com/lippo/marcos/data/extract/pim_imagem.png'
+    path_saida = os.getcwd()+'/src/com/lippo/marcos/data/extract/segmentadas/kmeans.png'
+    path_new_img = os.getcwd()+'/src/com/lippo/marcos/data/extract/sobrepostas/kmeans_sobreposta.png'
 
     import time
 
@@ -54,12 +55,11 @@ if __name__ == '__main__':
     kmeans_cv2(path_img=path_img,
                nome_img=path_saida)
 
-    print('sobreponto > ')
+    #sobrepondo
     sobrepor_img_rgb(path_img=path_img, path_mask=path_saida, path_new_img=path_new_img)
-    print('sobreposta jah')
     fim = time.time()
 
-    file_ = open('/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/arquivo/kmeans.txt', 'w')
+    file_ = open(os.getcwd()+'/src/com/lippo/marcos/data/arquivo/kmeans.txt', 'w')
     file_.write(str((fim-ini)))
     file_.close()
 

@@ -12,51 +12,31 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/LIB/Rabbit/amqp-client-4.0.2.jar!/" />
+          <root url="jar://$USER_HOME$/LIB/RABBIT-LIB/amqp-client-4.0.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/LIB/Rabbit/slf4j-api-1.7.21.jar!/" />
+          <root url="jar://$USER_HOME$/LIB/RABBIT-LIB/slf4j-api-1.7.21.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/LIB/Rabbit/slf4j-simple-1.7.22.jar!/" />
+          <root url="jar://$USER_HOME$/LIB/RABBIT-LIB/slf4j-simple-1.7.22.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/LIB/springsource-tool-suite-3.8.4.RELEASE-e4.6.3-updatesite/artifacts.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="jar://$USER_HOME$/LIB/springsource-tool-suite-3.8.4.RELEASE-e4.6.3-updatesite/artifacts.jar!/" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/LIB/springsource-tool-suite-3.8.4.RELEASE-e4.6.3-updatesite/content.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="jar://$USER_HOME$/LIB/springsource-tool-suite-3.8.4.RELEASE-e4.6.3-updatesite/content.jar!/" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="library" name="Python 3.5.2 (/usr/bin/python3.5) interpreter library" level="application" />

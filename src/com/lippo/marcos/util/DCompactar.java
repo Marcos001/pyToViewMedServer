@@ -12,6 +12,8 @@ import java.util.zip.ZipOutputStream;
 
 public class DCompactar extends util{
 
+    private final static String PATH = "/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/";
+
     public DCompactar(){
 
     }
@@ -132,7 +134,7 @@ public class DCompactar extends util{
                 String entryName = zentry.getName();
 
             // Cria o output do arquivo , Sera extraido onde esta rodando a classe
-                String saida = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/";
+                String saida = PATH+"data/extract/";
 
                 print("salvando em : "+ entryName);
 

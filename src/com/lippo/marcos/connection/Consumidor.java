@@ -10,8 +10,9 @@ import java.util.ArrayList;
 public class Consumidor extends util{
 
     private final static String QUEUE_NAME = "phone_server";
-    private String name_image = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/consumer.png";
-    private String file_zip_receiver = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/data.zip";
+    private final static String PATH = "/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/";
+    private String name_image = "data/consumer.png";
+    private String file_zip_receiver = PATH+"data/data.zip";
     private int cont_connections = 0;
 
     private void receber_zip(){
@@ -69,11 +70,11 @@ public class Consumidor extends util{
 
                             String[] imagens = new String[5];
 
-                            imagens[0] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/kmeans.png";
-                            imagens[1] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.png";
-                            imagens[2] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/kmeans_sobreposta.png";
-                            imagens[3] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/otsu_sobreposta.png";
-                            imagens[4] = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/grafico.png";
+                            imagens[0] = PATH+"data/extract/segmentadas/kmeans.png";
+                            imagens[1] = PATH+"data/extract/segmentadas/otsu.png";
+                            imagens[2] = PATH+"data/extract/sobrepostas/kmeans_sobreposta.png";
+                            imagens[3] = PATH+"data/extract/sobrepostas/otsu_sobreposta.png";
+                            imagens[4] = PATH+"data/grafico.png";
 
                             String[] name_imagens = new String[5];
 
@@ -101,7 +102,7 @@ public class Consumidor extends util{
                             mylist.add(grafico);
 
 
-                            String path_send_zip = "/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/data_zip/send_zip.zip";
+                            String path_send_zip = PATH+"data/extract/segmentadas/data_zip/send_zip.zip";
                             //zipar
 
                             zip.compactar_files(name_imagens, path_send_zip, mylist);

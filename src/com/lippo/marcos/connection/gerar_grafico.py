@@ -1,6 +1,7 @@
 import os, timeit, time
 import matplotlib.pyplot as plt
 
+
 def gerar_grafico(otsu, kmeans):
     ''''''
     y_axis = [otsu, kmeans]
@@ -16,7 +17,7 @@ def gerar_grafico(otsu, kmeans):
     plt.title('Tempo de execução!')
     plt.tight_layout()
     plt.grid(True)
-    plt.savefig("/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/grafico.png")
+    plt.savefig(os.getcwd()+'/src/com/lippo/marcos/data/grafico.png')
     print('figura salva!')
     #plt.show()
 
@@ -24,11 +25,11 @@ def gerar_grafico(otsu, kmeans):
 def get_valores_pro_grafico():
     ''''''
 
-    file_ = open('/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/arquivo/otsu.txt', 'r')
+    file_ = open(os.getcwd()+'/src/com/lippo/marcos/data/arquivo/otsu.txt', 'r')
     time_otsu = str(file_.readline())
     file_.close()
 
-    file_ = open('/home/mrv/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/arquivo/kmeans.txt', 'r')
+    file_ = open(os.getcwd()+'/src/com/lippo/marcos/data/arquivo/kmeans.txt', 'r')
     time_kmeans = str(file_.readline())
     file_.close()
 
