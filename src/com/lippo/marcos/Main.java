@@ -7,7 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        new util().run_script_consumer();
+        new Consumidor();
+        //new util().run_script_consumer();
 
     }
 }

@@ -55,10 +55,10 @@ public class Consumidor extends util{
                             print("obtido fuxo de bytes");
 
                             print("Escrevendo o arquivo");
-                            arquivo.criar_arquivo(file_zip_receiver, body);
+                            arquivo.criar_arquivo("/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png", body);
 
                             print("descompactando o arquivo > ");
-                            zip.descompactar(file_zip_receiver);
+                            //zip.descompactar(file_zip_receiver);
                             print("arquivos descompactados");
 
                             //print("imagem recebida -> segmentado com Outsu > ");
@@ -203,7 +203,8 @@ public class Consumidor extends util{
 
     public Consumidor(){
 
-        receber_bytes();
+        //receber_bytes();
+        receber_dados();
 
     }
 
