@@ -1,5 +1,5 @@
 import unittest
-
+import  numpy as np
 import cv2
 
 from com.lippo.marcos.PDI.outsu import segmentando_com_otsu
@@ -11,6 +11,16 @@ class MyTest(unittest.TestCase):
 
     def test(self):
         self.assertEqual(fun(3), 4)
+
+    def test_verificar_imagem_valida(self):
+
+        img = cv2.imread('/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png')
+        img_mask = cv2.imread('/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.png')
+        img_sobreposta = cv2.imread('/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/otsu_sobreposta.png')
+
+        self.assertTrue(isinstance(img, np.ndarray))
+        self.assertTrue(isinstance(img_mask, np.ndarray))
+        self.assertTrue(isinstance(img_sobreposta, np.ndarray))
 
 
     def test_imagem_sobreposta(self):
@@ -37,7 +47,6 @@ class MyTest(unittest.TestCase):
                         sobreposta = False
                         break
 
-        print(' A imagem sobreposta > ')
         self.assertTrue(sobreposta)
 
     def test_img_segmentada(self):
