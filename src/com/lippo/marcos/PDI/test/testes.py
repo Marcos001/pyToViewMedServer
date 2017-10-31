@@ -12,8 +12,37 @@ class MyTest(unittest.TestCase):
     def test(self):
         self.assertEqual(fun(3), 4)
 
+
+    def test_imagem_sobreposta(self):
+        '''
+        verifica se uma imagem foi sobreposta
+        :return:
+        '''
+
+        path_img = '/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png'
+        path_sobreposta = '/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/otsu_sobreposta.png'
+
+        img = cv2.imread(path_img)
+
+        img_mask = cv2.imread(path_sobreposta, 0)
+        img_sobreposta = cv2.imread(path_sobreposta)
+
+        sobreposta = True
+
+        for i in range(img_mask.shape[0]):
+            for j in range(img_mask.shape[1]):
+                if img_mask[i][j] != 0:
+                    if img[i][j][0] != img_sobreposta[i][j][0]:
+                        print(img[i][j] ,' = ', img_sobreposta[i][j])
+                        sobreposta = False
+                        break
+
+        print(' A imagem sobreposta > ')
+        self.assertTrue(sobreposta)
+
     def test_img_segmentada(self):
         '''verifica a quantidade de cluesters '''
+
         C_1 = -1
         C_2 = -1
         C_3 = -1
