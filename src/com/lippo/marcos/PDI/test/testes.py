@@ -1,6 +1,6 @@
 import unittest
 import  numpy as np
-import cv2
+import cv2, os
 
 from com.lippo.marcos.PDI.outsu import segmentando_com_otsu
 
@@ -49,6 +49,20 @@ class MyTest(unittest.TestCase):
 
         self.assertTrue(sobreposta)
 
+    def test_valida_parametros_(self):
+        print('arquivo existe ?')
+        path_img = '/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png'
+        path_mask = '/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.png'
+        path_new_img = '/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/otsu_sobreposta.png'
+        zip_file = '/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/data_zip/send_zip.zip'
+
+        self.assertTrue(os.path.exists(path_img))
+        self.assertTrue(os.path.exists(path_mask))
+        self.assertTrue(os.path.exists(path_new_img))
+        self.assertTrue(os.path.exists(zip_file))
+
+
+
     def test_img_segmentada(self):
         '''verifica a quantidade de cluesters '''
 
@@ -75,6 +89,12 @@ class MyTest(unittest.TestCase):
                            print(' C3 =  ', C_3)
 
         self.assertEqual(C_3,-1)
+
+
+
+
+
+
 
 if __name__ == '__main__':
     unittest.main()

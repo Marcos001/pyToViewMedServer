@@ -104,8 +104,6 @@ if __name__ == '__main__':
     ini = time.time()
     binarizando_com_outsu(path_img=path_img, path_saida=path_saida)
 
-
-
     print('sobreponto > ')
     sobrepor_img_rgb(path_img=path_img, path_mask=path_saida, path_new_img=path_new_img)
     print('sobreposta jah')
