@@ -22,10 +22,10 @@ public class Consumidor extends util{
     private String file_zip_receiver = PATH+"data/data.zip";
     private int cont_connections = 0;
 
-    private void receber_dados(){
+    public Arquivo arquivo;
+    public DCompactar zip;
 
-        Arquivo arquivo = new Arquivo();
-        DCompactar zip = new DCompactar();
+    private void receber_dados(){
 
         cont_connections++;
         print("CONEXÃO ["+cont_connections+"]");
@@ -138,7 +138,6 @@ public class Consumidor extends util{
 
     private void receber_bytes(){
 
-
         cont_connections++;
         print("CONEXÃO ["+cont_connections+"]");
 
@@ -197,11 +196,13 @@ public class Consumidor extends util{
             }
         }).start();
 
-
     }
 
 
     public Consumidor(){
+
+        arquivo = new Arquivo();
+        zip = new DCompactar();
 
         //receber_bytes();
         receber_dados();

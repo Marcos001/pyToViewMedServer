@@ -11,10 +11,11 @@ public class Produtor extends util {
 
     public Produtor(){}
 
-    public void send_file(byte[] conteudo){
+    public boolean send_file(byte[] conteudo){
 
         final  String QUEUE_NAME = "server_phone"; //"hello"
         final int PORT = Integer.getInteger("amqp.port", 5672);
+
 
         final String HOST = System.getProperty("amqp.host", "localhost");
         final String EXCHANGE = System.getProperty("amqp.exchange", "systemExchange");
@@ -42,11 +43,11 @@ public class Produtor extends util {
             channel.close();
             connection.close();
 
-
+            return true;
         }catch (Exception erro){
             System.out.println("Erro ao instanciar publisher enviando ao cliente >"+HOST+" \n"+erro);
+            return false;
         }
-
 
     }
 
