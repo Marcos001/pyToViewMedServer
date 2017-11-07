@@ -99,6 +99,7 @@ class MyTest(unittest.TestCase):
         saida
         :return:
         '''
+        print('test_vaalores_para_gerar_grafico()')
 
         from com.lippo.marcos.connection.gerar_grafico import  gerar_grafico
 
@@ -113,21 +114,21 @@ class MyTest(unittest.TestCase):
         print('processamento')
 
         file_otsu = open(path_file_time_otsu, 'r')
-        print('type is ', type(file_otsu), ' = ', file_otsu)
         time_otsu = str(file_otsu.readline())
         file_otsu.close()
 
-        #file_ = open(path_file_time_kmeans, 'r')
-        #self.assertIsNone(file_)
-        #time_kmeans = str(file_.readline())
-        #file_.close()
+        file_ = open(path_file_time_kmeans, 'r')
+        time_kmeans = str(file_.readline())
+        file_.close()
 
+        a = float(time_otsu)
+        b = float(time_kmeans)
 
+        self.assertIsNot(a, 0)
+        self.assertIsNot(b, 0)
 
-        #a = float(time_otsu)
-        #b = float(time_kmeans)
-
-        #gerar_grafico(a, b)
+        print('saida')
+        self.assertTrue(gerar_grafico(a, b))
 
 
 
