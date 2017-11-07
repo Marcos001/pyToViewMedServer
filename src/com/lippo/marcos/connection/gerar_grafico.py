@@ -1,4 +1,4 @@
-import os, timeit, time
+import os
 import matplotlib.pyplot as plt
 
 
@@ -20,9 +20,10 @@ def gerar_grafico(otsu, kmeans):
         plt.grid(True)
         plt.savefig(os.getcwd()+'/src/com/lippo/marcos/data/grafico.png')
         print('figura salva!')
-        #plt.show()
+        print(True)
         return True
     except:
+        print("false")
         return False
 
 
