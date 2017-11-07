@@ -51,6 +51,7 @@ class MyTest(unittest.TestCase):
 
     def test_valida_parametros_(self):
         print('arquivo existe ?')
+
         path_img = '/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/pim_imagem.png'
         path_mask = '/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/otsu.png'
         path_new_img = '/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/sobrepostas/otsu_sobreposta.png'
@@ -91,8 +92,42 @@ class MyTest(unittest.TestCase):
         self.assertEqual(C_3,-1)
 
 
+    def test_vaalores_para_gerar_grafico(self):
+        '''
+        entrada
+        processamento
+        saida
+        :return:
+        '''
+
+        from com.lippo.marcos.connection.gerar_grafico import  gerar_grafico
 
 
+        print('entrada')
+        path_file_time_otsu = '/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/arquivo/otsu.txt'
+        path_file_time_kmeans = '/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/arquivo/kmeans.txt'
+
+        self.assertTrue(os.path.exists(path_file_time_otsu))
+        self.assertTrue(os.path.exists(path_file_time_kmeans))
+
+        print('processamento')
+
+        file_otsu = open(path_file_time_otsu, 'r')
+        print('type is ', type(file_otsu), ' = ', file_otsu)
+        time_otsu = str(file_otsu.readline())
+        file_otsu.close()
+
+        #file_ = open(path_file_time_kmeans, 'r')
+        #self.assertIsNone(file_)
+        #time_kmeans = str(file_.readline())
+        #file_.close()
+
+
+
+        #a = float(time_otsu)
+        #b = float(time_kmeans)
+
+        #gerar_grafico(a, b)
 
 
 
