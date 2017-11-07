@@ -24,8 +24,12 @@ def kmeans_cv2(path_img, nome_img):
 
     c.imwrite(nome_img, res2)
 
+
+
+
 def sobrepor_img_rgb(path_img, path_mask, path_new_img):
     ''
+
     img = c.imread(path_img)
     img_new = c.imread(path_mask)
     img_mask = c.imread(path_mask, 0)
