@@ -1,6 +1,5 @@
 package com.lippo.marcos.teste;
 
-import com.lippo.marcos.connection.Consumidor;
 import com.lippo.marcos.connection.Produtor;
 import com.lippo.marcos.util.Arquivo;
 import com.lippo.marcos.util.DCompactar;
@@ -40,7 +39,7 @@ public class Testes {
 
 
     @Test
-    public void test_verifica_servidor_rodando(){
+    public void test_Consumidor(){
 
         arquivo = new Arquivo();
         zip = new DCompactar();
@@ -209,6 +208,73 @@ public class Testes {
         System.out.println("FIM");
     }
 
+
+    @Test
+    public void teste_Produtor(){
+
+        String path_file = "/home/pavic/IdeaProjects/pyToViewMedServer/src/com/lippo/marcos/data/extract/segmentadas/data_zip/send_zip.zip";
+
+        assertTrue(new File(path_file).exists());
+
+        byte[] conteudo;
+
+        conteudo = arquivo.converte_bytes(arquivo.ler_arquivo(path_file));
+
+        //@ Test -
+        assertNotNull(conteudo);
+
+        final  String QUEUE_NAME = "server_phone"; //"hello"
+        final int PORT = Integer.getInteger("amqp.port", 5672);
+
+
+        final String HOST = System.getProperty("amqp.host", "localhost");
+        final String EXCHANGE = System.getProperty("amqp.exchange", "systemExchange");
+        final String ENCODING = "UTF-8";
+
+        Connection connection;
+        boolean create_connection = false;
+
+        try{
+
+            System.out.println(" configurações da conexão ");
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setHost(HOST);
+            factory.setPort(PORT);
+            factory.setUsername("nig");
+            factory.setPassword("nig");
+            factory.setVirtualHost("/");
+
+            // @Test -
+            assertNotNull(factory);
+
+            connection = factory.newConnection();
+
+            // @Test -
+            assertNotNull(connection);
+
+            Channel channel = connection.createChannel();
+
+            // @Test -
+            assertNotNull(channel);
+
+            System.out.println(" enviando mensagem > ");
+            channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+            channel.basicPublish("", QUEUE_NAME, null, conteudo);
+            System.out.println(" [x] arquivo enviado ");
+            create_connection = true;
+
+            System.out.println("fechando conexão");
+            channel.close();
+            connection.close();
+
+
+        }catch (Exception erro){
+            System.out.println("Erro ao instanciar publisher enviando ao cliente >"+HOST+" \n"+erro);
+        }
+
+        assertTrue(create_connection);
+
+    }
 
 
 

@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="release">
+    <output-path>$PROJECT_DIR$/out/artifacts/release</output-path>
+    <root id="archive" name="release.jar">
+      <element id="library" level="application" name="Python 3.5.2 (/usr/bin/python3.5) interpreter library" />
+      <element id="module-output" name="pyToViewMedServer" />
+      <element id="artifact" artifact-name="server_middle_pim" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
